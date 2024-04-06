@@ -8,14 +8,22 @@ variable "vpc_id" {
   default = ""
 }
 
-variable "dmz_sg_ingress_rules" {
+# https://blog.avangards.io/5-tips-to-efficiently-manage-aws-security-groups-using-terraform
+variable "sg_ingress_rules" {
   description = "The security group rules for the web servers."
   type = object({
     ingress = map(object({
-      cidr_ipv4   = string
-      from_port   = number
-      ip_protocol = string
-      to_port     = number
+      cidr_ipv4                    = optional(string)
+      from_port                    = optional(number)
+      ip_protocol                  = optional(string)
+      to_port                      = optional(number)
+      referenced_security_group_id = optional(string)
     }))
   })
+}
+
+variable "sg_usage" {
+  type        = string
+  description = "this security group is used from"
+  default     = ""
 }

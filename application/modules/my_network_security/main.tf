@@ -7,19 +7,26 @@
 
 ## Security Group
 resource "aws_security_group" "my_sg" {
-  name        = "${var.tag_name_prefix}-sg"
-  description = "${var.tag_name_prefix}-sg"
+  name        = "${var.tag_name_prefix}-${var.sg_usage}"
+  description = "${var.tag_name_prefix}-${var.sg_usage}"
   vpc_id      = var.vpc_id
+
+  tags = {
+    Usage = var.sg_usage
+  }
 }
 
 ## Security Group - Ingress Rules
 resource "aws_vpc_security_group_ingress_rule" "my_sg_ingress" {
-  for_each          = var.dmz_sg_ingress_rules.ingress
   security_group_id = aws_security_group.my_sg.id
-  cidr_ipv4         = each.value.cidr_ipv4
-  from_port         = each.value.from_port
-  ip_protocol       = each.value.ip_protocol
-  to_port           = each.value.to_port
+
+  for_each    = var.sg_ingress_rules.ingress
+  cidr_ipv4   = each.value.cidr_ipv4
+  from_port   = each.value.from_port
+  ip_protocol = each.value.ip_protocol
+  to_port     = each.value.to_port
+
+  referenced_security_group_id = each.value.referenced_security_group_id
 }
 
 ## Security Group - Egress Rule (Allow ALL)
