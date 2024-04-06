@@ -1,0 +1,21 @@
+subnets:
+  private:
+  - cidr: 10.40.0.0/24
+    name: subnet_a1
+    zone: ap-northeast-1a
+  - cidr: 10.40.4.0/24
+    name: subnet_c1
+    zone: ap-northeast-1c
+  - cidr: 10.40.8.0/24
+    name: subnet_d1
+    zone: ap-northeast-1d
+  public:
+  - cidr: 10.40.200.0/24
+    name: Subnet_A1
+    zone: ap-northeast-1a
+  - cidr: 10.40.204.0/24
+    name: Subnet_C1
+    zone: ap-northeast-1c
+  - cidr: 10.40.208.0/24
+    name: Subnet_D1
+    zone: ap-northeast-1d
