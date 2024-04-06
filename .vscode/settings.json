@@ -1,0 +1,9 @@
+{
+  // File Exclude Show(Hide files) ==================================================
+  "files.exclude": {
+    "**/.terraform": true,
+    "**/terraform.tfstate.backup": true,
+    "**/plan.out": true,
+    "**/.terraform.lock.hcl": true,
+},
+}
