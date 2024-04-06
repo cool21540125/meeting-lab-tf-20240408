@@ -1,7 +1,7 @@
-output "out_public_subnets" {
-  value = aws_subnet.my_public_subnets
+output "out_public_subnets_cidr" {
+  value = [for s in aws_subnet.my_public_subnets : s.cidr_block]
 }
 
-output "out_private_subnets" {
-  value = aws_subnet.my_private_subnets
+output "out_private_subnets_cidr" {
+  value = [for s in aws_subnet.my_private_subnets : s.cidr_block]
 }
