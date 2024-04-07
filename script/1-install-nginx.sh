@@ -1,8 +1,11 @@
 #!/bin/env bash
 # 
+# Usage: ./1-install-nginx.sh
+
+#
 
 ### running?
-if [ "$(ps -ef | grep -v grep | grep nginx)" != "" ]; then
+if [ -e /var/run/nginx.pid ]; then
   echo "========================"
   echo "nginx is installed and running"
   echo "========================"
