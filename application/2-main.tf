@@ -69,3 +69,36 @@ resource "aws_instance" "my_private_ec2_instance" {
     Name = "${var.tag_name_prefix}-private01"
   }
 }
+
+
+## ------ RDS - private subnet ------
+resource "aws_db_subnet_group" "my_rds_subnet_group" {
+  name = "${var.tag_name_prefix}-rds-subnet-group"
+  subnet_ids = [
+    module.my_network.out_public_subnets_ids[0],
+    module.my_network.out_public_subnets_ids[1],
+    module.my_network.out_public_subnets_ids[2]
+  ]
+
+  tags = {
+    Name = "${var.tag_name_prefix}-rds-subnet-group"
+  }
+}
+
+resource "aws_db_instance" "my_private_rds" {
+  allocated_storage     = 10
+  max_allocated_storage = 20
+  db_name               = "test"
+  identifier            = "${var.tag_name_prefix}-rds-mysql"
+  engine                = "mysql"
+  engine_version        = "8.0"
+  instance_class        = "db.t3.micro"
+  username              = "admin"
+  password              = "2wsx$RFVasdfZXCV"
+  parameter_group_name  = "default.mysql8.0"
+  skip_final_snapshot   = true
+  multi_az              = false
+
+  vpc_security_group_ids = [module.my_private_sg.out_security_group.id]
+  db_subnet_group_name   = aws_db_subnet_group.my_rds_subnet_group.name
+}

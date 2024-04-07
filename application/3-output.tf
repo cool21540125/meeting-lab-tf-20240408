@@ -14,3 +14,10 @@ output "out_private_ec2" {
     public   = ""
   }
 }
+
+output "out_rds" {
+  value = {
+    endpoint = aws_db_instance.my_private_rds.endpoint
+    version = aws_db_instance.my_private_rds.engine_version_actual
+  }
+}
