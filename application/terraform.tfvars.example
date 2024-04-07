@@ -1,5 +1,9 @@
 # Your VPN IP
-my_ip = ""
+my_ip = "111.112.113.114"
 
-# Your ssh public key
-public_key = ""
+# Your ssh public key - from my_ip to dmz subnet
+dmz_public_key = ""
+
+
+# Your ssh public key - from dmz subnet to private subnet
+priv_public_key = ""
