@@ -20,9 +20,15 @@ variable "my_ip" {
   default = ""
 }
 
-variable "public_key" {
+variable "dmz_public_key" {
   type        = string
-  description = "Used to ssh to host"
+  description = "Used to ssh to dmz hosts"
+  default     = "<Your public key>"
+}
+
+variable "priv_public_key" {
+  type        = string
+  description = "Used to ssh to private subnet hosts via dmz hosts"
   default     = "<Your public key>"
 }
 
