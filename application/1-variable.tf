@@ -4,9 +4,26 @@ variable "aws_region" {
   default = "ap-northeast-1"
 }
 
+variable "tag_name_prefix" {
+  type        = string
+  description = "Used to prefix the name of resource"
+  default     = "meeting-lab"
+}
+variable "tag_name_suffix" {
+  type        = string
+  description = "Used to make additional notes on resource"
+  default     = ""
+}
+
 variable "my_ip" {
   type    = string
   default = ""
+}
+
+variable "public_key" {
+  type        = string
+  description = "Used to ssh to host"
+  default     = "<Your public key>"
 }
 
 locals {
@@ -43,4 +60,3 @@ locals {
     }
   }
 }
-

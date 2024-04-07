@@ -12,3 +12,12 @@
 - 位於 private
 
 ---
+
+```bash
+### Start using it
+cd application
+
+terraform init
+terraform plan
+terraform apply
+```

@@ -1,2 +1,5 @@
 # Your VPN IP
-my_ip = "110.120.130.140"
+my_ip = ""
+
+# Your ssh public key
+public_key = ""
