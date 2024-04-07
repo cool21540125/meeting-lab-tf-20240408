@@ -38,3 +38,4 @@ terraform.rc
 *plan.out
 
 .env
+**/connection.json
