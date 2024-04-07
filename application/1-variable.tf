@@ -57,11 +57,17 @@ locals {
   }
   private_sg_ingress_rules = {
     ingress = {
-      "from-dmz-sg" = {
+      "ssh-from-dmz-sg" = {
         referenced_security_group_id = module.my_dmz_sg.out_security_group.id
         ip_protocol                  = "tcp"
         from_port                    = 22
         to_port                      = 22
+      }
+      "mysql-from-dmz-sg" = {
+        referenced_security_group_id = module.my_dmz_sg.out_security_group.id
+        ip_protocol                  = "tcp"
+        from_port                    = 3306
+        to_port                      = 3306
       }
     }
   }
