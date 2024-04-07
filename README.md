@@ -60,3 +60,23 @@ cat connection.json | jq
 
 ## 4. scripts
 
+```bash
+cd script
+
+# 可將腳本 scp 到 Ubuntu (CentOS 因沒要求, 尚未做過嚴謹測試)
+scp script/*.sh ubuntu@xxx.xxx.xxx.xxx:/home/ubuntu/.
+
+# 進入遠端機器後
+sudo -i
+chmod 700 *.sh
+
+### 安裝 Nginx
+./1-install-nginx.sh
+
+### 配置 virtual host 到 /etc/nginx/conf.d/example.com.conf 
+./2-generate-vhost.sh example.com
+
+### 針對運行在 8080 port 的服務做檢測, 失敗則重啟(重複 60次)
+./3-health-check.sh nginx
+./3-health-check.sh AppName
+```
