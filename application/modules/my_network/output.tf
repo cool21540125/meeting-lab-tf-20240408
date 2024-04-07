@@ -9,3 +9,11 @@ output "out_private_subnets_cidr" {
 output "out_vpc_id" {
   value = aws_vpc.my_vpc.id
 }
+
+output "out_public_subnets_ids" {
+  value = [for s in aws_subnet.my_public_subnets : s.id]
+}
+
+output "out_private_subnets_ids" {
+  value = [for s in aws_subnet.my_private_subnets : s.id]
+}
